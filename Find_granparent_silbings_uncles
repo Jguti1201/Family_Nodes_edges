@@ -1,0 +1,88 @@
+# -*- coding: utf-8 -*-
+
+from digraphClass import *
+d=Digraph() 
+"""10. Illustrate that your methods work by writing code that reads in the file 
+FamilyTree.txt, creates the corresponding rooted tree, and then finds
+a. the grandparent of Linda,"""
+infile = open('FamilyTree.txt','r')
+ 
+
+v1='Linda'
+v2='Minerva'
+v3='Katrina'
+v4='Frank'
+infile = open('FamilyTree.txt','r')
+for line in infile:
+    # I separate the Node and the Edges
+    lineList=line[:-1].split(':')
+    # I separate each Edge
+    lineList1=lineList[1].split(',')
+    # LineList 1 are the Edges and lineList2 the Node
+    lineList2=lineList[0]
+    x=lineList2
+    # I add Node to the Digraph
+    d.addVertex(lineList2)
+    #I add the Edges to the Node in the Digraph
+    for i in range(len(lineList1)): 
+     d.addEdge(lineList2,lineList1[i])
+    if d.isPath([lineList2,v2])==True:
+        dadv1=lineList2 #the parent of v1 is dadv1 
+    if d.isPath([lineList2,v2])==True:
+        dadv2=lineList2 #the parent of v2 is dadv2
+    if d.isPath([lineList2,v3])==True:
+        dadv3=lineList2 #the parent of v3 is dadv3
+    if d.isPath([lineList2,v4])==True:
+        dadv4=lineList2 #the parent of v4 is dadv4  
+        if dadv2==dadv3: # if parent of y and name are the same they are silbings
+            hermanos=True
+        else:
+            hermanos=False          
+infile.close()
+
+infile = open('FamilyTree.txt','r')
+for line in infile:
+    # I separate the Node and the Edges
+    lineList=line[:-1].split(':')
+    # I separate each Edge
+    lineList1=lineList[1].split(',')
+    # LineList 1 are the Edges and lineList2 the Node
+    lineList2=lineList[0]
+    x=lineList2
+    # I add Node to the Digraph
+    d.addVertex(lineList2)
+    #I add the Edges to the Node in the Digraph
+    for i in range(len(lineList1)): 
+     d.addEdge(lineList2,lineList1[i])
+    if d.isPath([lineList2,dadv1,v1])==True:
+        grandpav1=lineList2 #the grandpa of v1 is grandpa
+    if d.isPath([lineList2,dadv4,v4])==True:
+        grandpav4=lineList2 #the grandpa of v4 is grandpav4    
+infile.close()        
+uncle=''
+infile = open('FamilyTree.txt','r')
+for line in infile:
+    # I separate the Node and the Edges
+    lineList=line[:-1].split(':')
+    # I separate each Edge
+    lineList1=lineList[1].split(',')
+    # LineList 1 are the Edges and lineList2 the Node
+    lineList2=lineList[0]
+    x=lineList2
+    # I add Node to the Digraph
+    d.addVertex(lineList2)
+    #I add the Edges to the Node in the Digraph
+    for i in range(len(lineList1)): 
+     d.addEdge(lineList2,lineList1[i])            
+    if d.isPath([lineList2,v4])==True:
+        dadv4=lineList2 #the parent of v4 is dadv4
+    if d.isPath([lineList2,dadv4,v4])==True:
+        grandpav4=lineList2 #the grandpa of v4 is grandpav4   
+    if d.isPath([grandpav4,lineList2])==True:
+        if lineList2!=dadv4:#if they are sons of they grandpa but they are not his father,
+           #They have to be his uncles
+            unclev4=uncle+','+lineList2
+infile.close()
+print('the grandparent of {0} is {1}'.format(v1,grandpav4))
+print('the statement that {0} and {1} are silbings is {2}'.format(v2,v3,hermanos))    
+print('the uncle of {0} is {1}'.format(v4,unclev4))
