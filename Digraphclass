@@ -1,0 +1,83 @@
+#Directed Graph Class
+# A directed graph consists of a set of vertices and a set of edges
+
+class Digraph():
+    def __init__(self):
+        self.edges={}   #edges is a dictionary whose key is a vertex
+                          #and whose value is a list of adjacent vertices
+        
+        self.vertexList=[]  #vertexList is a list of all vertices in the Digraph
+ 
+        
+ 
+    def addVertex(self,v):   #Adds a vertex to the Digraph
+        if v not in self.vertexList:
+            self.vertexList.append(v)
+            self.edges[v]=[]
+ 
+    
+ 
+    
+    def addEdge(self, source, destination):  #Adds an edge to the Digraph
+        
+        if source in self.vertexList:   #is source already in Digraph?
+            if destination not in self.edges[source]: 
+                self.edges[source].append(destination)
+            
+        else:
+            self.vertexList.append(source)
+            
+            self.edges[source]=[destination]
+       
+        if destination not in self.vertexList:  #is destination already in Digraph?
+                self.addVertex(destination)
+                
+
+    def outDegree(self,v):
+        return len(self.edges[v])
+                
+    def inDegree(self,v):
+        degree = 0
+        for w in self.vertexList:
+            if v in self.edges[w]:
+                degree+=1
+        return degree
+
+
+    def isPath(self,vlist):
+        for i in range(len(vlist)-1):
+            if vlist[i+1] not in self.edges[vlist[i]]:
+                return False
+        return True
+        
+        
+        
+    def __str__(self):  #presents the Digraph in the form
+                        # source: destination1, destination2, ...
+         string=''
+         for vertex in self.edges:
+             vstring=str(vertex)+':'
+             if self.edges[vertex] !=[]:
+                 for v in self.edges[vertex]:
+                    vstring=vstring+ str(v)+','
+             else:
+                 vstring=vstring + 'None '
+                
+             string=string +vstring[:-1]+'\n'
+         return string
+
+  
+def Example():
+    d = Digraph()
+    d.addVertex(1)
+    d.addEdge(1,3)
+    d.addEdge(1,2)
+    d.addEdge(1,4)
+    d.addEdge(2,4)
+    d.addEdge(3,2)
+    return d
+
+d=Example()
+
+
+d.addVertex('Harry')
