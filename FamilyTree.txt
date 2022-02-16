@@ -1,0 +1,15 @@
+Ed:James,Yvette,Yvonne
+James:Paul,George,John,Ringo
+Yvette:Katrina,Hermione,Minerva
+Katrina:Spike,Lavender,Alicia
+Lavender:Ron
+Minerva:Albus,Luke
+Albus:Yoda,Gandalf,Leia
+Yvonne:Sylva,Derrick,Frank,Leticia
+Frank:Dawn,Cindy,Marion,Linda
+Derrick:Emma,Carl,Lester
+Dawn:Fawn,Shawn,Lawn,Pawn
+Marion:Robin,Richard,Merlin
+Fawn:Cub,Puppy,Kitten
+Lawn:Ranger,Mower
+Linda:Lee,Lu,Lo,Li
